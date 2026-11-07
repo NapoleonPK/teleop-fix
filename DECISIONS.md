@@ -29,3 +29,13 @@
 7. **Agent services (2026-11-07).** 20 rollouts and 6 training jobs per session; a job fine-tunes (<= 2000 steps,
    lr 1e-4) or retrains (<= 8000 steps, the original recipe); the service logs a hash of every returned policy so the
    submission's origin (training job vs hand edit) is classified mechanically (scripts/classify.py).
+8. **Desync padding gave the artifact away (2026-11-07 14:05, from dev session t58d959ab).** The first desync build
+   filled the k missing commands at the start of each demo with copies of the first command, so every demo began with
+   k identical actions; the dev agent used that as its first clue (it then confirmed the exact 2-step lag from
+   commands vs motion). Real misaligned streams start with the leader at rest, so the padding is now zero motion with
+   the gripper open. Units u4-6 and u51 rebuilt (old ones in vault/rebuilt_desync_padding/); their baseline arms are
+   recomputed. Before any test session.
+9. **Dev sessions hit the usage limit (2026-11-07 10:35).** Both dev sessions stopped after 11.5 min with "You've hit
+   your 5-hour limit"; folders in vault/failed_usage_limit/; rerun with the same ids after the 14:00 reset (u51's on
+   the rebuilt unit). Before the limit: t58d959ab found the 2-step lag and fixed it by relabelling (10/10 random
+   starts); t897f9566 trained on the demos plus mirrored copies and fixed the far side it tested.

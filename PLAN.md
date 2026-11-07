@@ -17,3 +17,8 @@ Design: docs/PROTOCOL.md (draft). Mac mini only, 24/7 allowed. Long-lived jobs g
 - [ ] prereg freeze -> 12 test sessions + baselines (launchd supervisor) -> analysis -> write-up
 
 Launch helper: scripts/bg.sh LABEL LOG CMD... (one-off launchd job, plist removes itself when done).
+
+**2026-11-07 14:10.** Dev sessions hit the usage limit at 10:35 (both had found the cause: 2-step lag relabel; mirror
+augmentation). Desync padding tell fixed (decision 8): u4-6, u51 rebuilding (com.teleopfix.rebuild: u51 -> dev
+t58d959ab rerun -> remaining units -> all baselines). Dev t897f9566 rerunning. Test supervisor written
+(scripts/supervisor.py, not installed yet: install after the prereg freeze).

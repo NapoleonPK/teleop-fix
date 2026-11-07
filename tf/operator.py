@@ -113,7 +113,8 @@ def demo(prof: Profile, seed: int):
     spec = sim.Spec(seed, prof.comfort)
     ok, X, A, _ = sim.rollout(op, spec, record=True)
     if prof.desync:                       # logging misalignment: the executed demo is fine, the recorded pairs are not
-        A = np.concatenate([np.repeat(A[:1], prof.desync, 0), A[:-prof.desync]])
+        rest = np.tile(np.array([0, 0, 0, sim.OPEN], np.float64), (prof.desync, 1))   # leader not yet moving
+        A = np.concatenate([rest, A[:-prof.desync]])
     meta = dict(seed=seed, success=bool(ok), profile=prof.name, region=prof.comfort, desync=prof.desync, **op.meta)
     return X.astype(np.float32), A.astype(np.float32), ok, meta
 

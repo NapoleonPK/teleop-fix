@@ -1,0 +1,9 @@
+{
+ "port": 49831,
+ "rollout_budget": 20,
+ "train_budget": 6,
+ "dataset": "/Users/teo/Developer/teleopfix/vault/units/u52/dataset.npz",
+ "policy": "/Users/teo/Developer/teleopfix/vault/units/u52/policy.npz",
+ "log": "/Users/teo/Developer/teleopfix/vault/sessions/t897f9566/service.jsonl",
+ "session_index": 2
+}

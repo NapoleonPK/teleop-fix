@@ -1,0 +1,26 @@
+{
+ "demos_10": {
+  "operator_minutes": 5.0,
+  "region": "whole",
+  "extra_demo_success": 1.0
+ },
+ "demos_25": {
+  "operator_minutes": 12.5,
+  "region": "whole",
+  "extra_demo_success": 1.0
+ },
+ "demos_50": {
+  "operator_minutes": 25.0,
+  "region": "whole",
+  "extra_demo_success": 1.0
+ },
+ "filter": {
+  "kept": 500,
+  "dropped": {
+   "pause": 0,
+   "retry": 0,
+   "fail": 0
+  }
+ },
+ "longer": {}
+}

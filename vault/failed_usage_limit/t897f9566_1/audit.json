@@ -1,0 +1,15 @@
+{
+ "session": "t897f9566",
+ "n_flags": 0,
+ "flag_counts": {
+  "outside": 0,
+  "network": 0,
+  "tamper": 0
+ },
+ "budget_use": {
+  "rollouts": 7,
+  "trains": 1,
+  "refused": 0
+ },
+ "flags": []
+}

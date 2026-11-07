@@ -1,0 +1,57 @@
+{
+ "autoMemoryEnabled": false,
+ "env": {
+  "CLAUDE_CODE_DISABLE_AUTO_MEMORY": "1",
+  "CLAUDE_CODE_DISABLE_CLAUDE_MDS": "1",
+  "PATH": "/Users/teo/ws-subject/py/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+ },
+ "permissions": {
+  "disableBypassPermissionsMode": "disable",
+  "deny": [
+   "Read(//Users/teo/Developer/**)",
+   "Read(//Users/teo/.claude/**)",
+   "Read(//Users/teo/Library/**)",
+   "Read(//Users/teo/Documents/**)",
+   "Read(//Users/teo/Desktop/**)",
+   "Read(//Users/teo/Downloads/**)",
+   "Read(//Users/teo/ws-subject/sessions/**)",
+   "Read(//Users/teo/tf-subject/sessions/t897f9566/**)",
+   "WebFetch",
+   "WebSearch"
+  ],
+  "allow": [
+   "Read(//Users/teo/tf-subject/sessions/t58d959ab/**)",
+   "Edit(//Users/teo/tf-subject/sessions/t58d959ab/**)",
+   "Write(//Users/teo/tf-subject/sessions/t58d959ab/**)",
+   "Bash",
+   "Glob",
+   "Grep"
+  ]
+ },
+ "sandbox": {
+  "enabled": true,
+  "failIfUnavailable": true,
+  "allowUnsandboxedCommands": false,
+  "autoAllowBashIfSandboxed": true,
+  "network": {
+   "allowedDomains": [],
+   "allowLocalBinding": true
+  },
+  "filesystem": {
+   "denyRead": [
+    "~/Developer",
+    "~/.claude",
+    "~/Library",
+    "~/Documents",
+    "~/Desktop",
+    "~/Downloads",
+    "/Users/teo/tf-subject/sessions",
+    "/Users/teo/ws-subject/sessions"
+   ],
+   "allowRead": [
+    "/Users/teo/tf-subject/sessions/t58d959ab",
+    "/Users/teo/ws-subject/py"
+   ]
+  }
+ }
+}
