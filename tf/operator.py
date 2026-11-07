@@ -14,6 +14,8 @@ recording. Artifacts, each a known habit of human teleoperation:
 - comfort:    table region the operator demonstrates in (block start); "whole" = everywhere. A "near" comfort zone
               leaves the far side (x offset > 0.05 m) undemonstrated.
 - keep_failed: failed demos are kept in the dataset (operators rarely delete them).
+- desync:     the recording pipeline's leader and follower streams are misaligned: observation t is stored with the
+              command of step t - desync (the demo itself was executed correctly).
 
 Every artifact the profile applies is written to the demo's metadata, which the agent never sees (ground truth for
 the diagnosis score and for the heuristic-filter baseline's evaluation, not for its decisions).
@@ -44,13 +46,15 @@ class Profile:
     early_grip_dz: float = 0.025
     notice: int = 4
     comfort: str = "whole"
+    desync: int = 0              # recording pipeline pairs observation t with the command of step t - desync
     keep_failed: bool = True
 
 
 PROFILES = {
     "clean": Profile(),
     "hesitant": Profile(name="hesitant", hesitate_p=0.5),
-    "laggy": Profile(name="laggy", lag=3),
+    "laggy": Profile(name="laggy", lag=3, gain=0.5),      # decision 3: does not hurt the policy; not used
+    "desync": Profile(name="desync", desync=2),
     "comfort": Profile(name="comfort", comfort="near"),
     "early_grip": Profile(name="early_grip", early_grip_p=0.4),
 }
@@ -108,7 +112,9 @@ def demo(prof: Profile, seed: int):
     op = Operator(prof, rng)
     spec = sim.Spec(seed, prof.comfort)
     ok, X, A, _ = sim.rollout(op, spec, record=True)
-    meta = dict(seed=seed, success=bool(ok), profile=prof.name, region=prof.comfort, **op.meta)
+    if prof.desync:                       # logging misalignment: the executed demo is fine, the recorded pairs are not
+        A = np.concatenate([np.repeat(A[:1], prof.desync, 0), A[:-prof.desync]])
+    meta = dict(seed=seed, success=bool(ok), profile=prof.name, region=prof.comfort, desync=prof.desync, **op.meta)
     return X.astype(np.float32), A.astype(np.float32), ok, meta
 
 
