@@ -22,3 +22,16 @@ Launch helper: scripts/bg.sh LABEL LOG CMD... (one-off launchd job, plist remove
 augmentation). Desync padding tell fixed (decision 8): u4-6, u51 rebuilding (com.teleopfix.rebuild: u51 -> dev
 t58d959ab rerun -> remaining units -> all baselines). Dev t897f9566 rerunning. Test supervisor written
 (scripts/supervisor.py, not installed yet: install after the prereg freeze).
+
+**2026-11-07 15:15. Prereg FROZEN** (prereg/teleopfix.md, commit 16748d6, tag `prereg`, sha in runs/prereg_sha.txt).
+12 test sessions created (vault/sessions.json). Supervisor installed as launchd KeepAlive agent
+**com.teleopfix.supervisor** (~/Library/LaunchAgents; log runs/supervisor.log): one session at a time, seed-11 order,
+usage-limit / login-fault reruns, then diagnosis -> classify -> evaluate_all heldout -> runs/ALL_DONE.
+First launch failed ("Not logged in": env had no USER) -> deviations 1-2 (commit 5c40299; also desync truth text
+k=3). Restarted 15:08; t069263b0 (u3) running normally. Baselines (com.teleopfix.rebuild2) done for u51/52/1-3,
+u4-12 continuing; finish() waits for them.
+- [~] 12 test sessions (supervisor)
+- [~] baselines u4-12
+- [ ] hand-audit flagged sessions -> vault/audit_verdicts.json (flat {id: "clean" | "violation: ..."})
+- [ ] after runs/ALL_DONE: `.venv/bin/python scripts/analysis.py vault/eval_heldout.json results/` once; write-up; email Téo
+Stop: `launchctl bootout gui/501/com.teleopfix.supervisor`.
