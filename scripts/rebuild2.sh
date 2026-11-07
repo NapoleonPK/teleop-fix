@@ -1,0 +1,4 @@
+#!/bin/bash
+cd ~/Developer/teleopfix
+PYTHONPATH=. .venv/bin/python scripts/build_units.py vault/units.json
+PYTHONPATH=. .venv/bin/python scripts/baselines.py 51 52 1 2 3 4 5 6 7 8 9 10 11 12

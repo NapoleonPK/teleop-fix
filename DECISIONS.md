@@ -39,3 +39,7 @@
    your 5-hour limit"; folders in vault/failed_usage_limit/; rerun with the same ids after the 14:00 reset (u51's on
    the rebuilt unit). Before the limit: t58d959ab found the 2-step lag and fixed it by relabelling (10/10 random
    starts); t897f9566 trained on the demos plus mirrored copies and fixed the far side it tested.
+10. **Desync strength re-frozen at k = 3 (2026-11-07 14:55).** With the realistic zero-motion padding (decision 8),
+    k = 2 lost only 40-41 points on calibration units 900/901 (57.5%, 59%) and 25 on dev unit u51 (74.5%), close to
+    the 30-point floor; k = 3 lost 63 (35%, 36%). Test units u4-6 rebuilt with k = 3 (the k = 2 builds are in
+    vault/rebuilt_desync_k2/). Dev unit u51 and its session stay at k = 2 (dev only, same mechanism).

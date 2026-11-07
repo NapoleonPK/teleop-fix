@@ -3,3 +3,6 @@ __pycache__/
 runs/
 vault/sessions/
 *.pt
+vault/units/
+vault/rebuilt_*/
+vault/failed_*/

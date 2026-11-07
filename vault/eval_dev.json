@@ -1,0 +1,211 @@
+{
+ "51": {
+  "broken": {
+   "whole": 0.745,
+   "near": 0.585,
+   "far": 0.76
+  },
+  "agent:t58d959ab": {
+   "whole": 1.0,
+   "near": 1.0,
+   "far": 1.0,
+   "submission": "ok"
+  }
+ },
+ "52": {
+  "broken": {
+   "whole": 0.645,
+   "near": 1.0,
+   "far": 0.01
+  },
+  "demos_10": {
+   "whole": 0.72,
+   "near": 1.0,
+   "far": 0.17
+  },
+  "demos_25": {
+   "whole": 0.985,
+   "near": 1.0,
+   "far": 0.955
+  },
+  "demos_50": {
+   "whole": 0.995,
+   "near": 1.0,
+   "far": 0.995
+  },
+  "filter": {
+   "whole": 0.635,
+   "near": 1.0,
+   "far": 0.0
+  },
+  "longer": {
+   "whole": 0.585,
+   "near": 1.0,
+   "far": 0.02
+  },
+  "search": {
+   "whole": 0.6,
+   "near": 1.0,
+   "far": 0.0
+  },
+  "agent:t897f9566": {
+   "whole": 1.0,
+   "near": 1.0,
+   "far": 1.0,
+   "submission": "ok"
+  }
+ },
+ "1": {
+  "broken": {
+   "whole": 0.435,
+   "near": 0.32,
+   "far": 0.58
+  },
+  "demos_10": {
+   "whole": 0.445,
+   "near": 0.355,
+   "far": 0.54
+  },
+  "demos_25": {
+   "whole": 0.36,
+   "near": 0.285,
+   "far": 0.47
+  },
+  "demos_50": {
+   "whole": 0.375,
+   "near": 0.245,
+   "far": 0.545
+  },
+  "filter": {
+   "whole": 1.0,
+   "near": 1.0,
+   "far": 1.0
+  },
+  "longer": {
+   "whole": 0.28,
+   "near": 0.2,
+   "far": 0.375
+  },
+  "search": {
+   "whole": 0.6,
+   "near": 0.79,
+   "far": 0.395
+  }
+ },
+ "2": {
+  "broken": {
+   "whole": 0.135,
+   "near": 0.1,
+   "far": 0.14
+  },
+  "demos_10": {
+   "whole": 0.145,
+   "near": 0.07,
+   "far": 0.275
+  },
+  "demos_25": {
+   "whole": 0.14,
+   "near": 0.09,
+   "far": 0.235
+  },
+  "demos_50": {
+   "whole": 0.11,
+   "near": 0.075,
+   "far": 0.19
+  },
+  "filter": {
+   "whole": 0.995,
+   "near": 1.0,
+   "far": 0.96
+  },
+  "longer": {
+   "whole": 0.235,
+   "near": 0.195,
+   "far": 0.245
+  },
+  "search": {
+   "whole": 0.455,
+   "near": 0.385,
+   "far": 0.6
+  }
+ },
+ "3": {
+  "broken": {
+   "whole": 0.565,
+   "near": 0.57,
+   "far": 0.47
+  },
+  "demos_10": {
+   "whole": 0.835,
+   "near": 0.79,
+   "far": 0.845
+  },
+  "demos_25": {
+   "whole": 0.77,
+   "near": 0.69,
+   "far": 0.84
+  },
+  "demos_50": {
+   "whole": 0.78,
+   "near": 0.67,
+   "far": 0.83
+  },
+  "filter": {
+   "whole": 1.0,
+   "near": 1.0,
+   "far": 1.0
+  },
+  "longer": {
+   "whole": 0.215,
+   "near": 0.245,
+   "far": 0.29
+  },
+  "search": {
+   "whole": 0.455,
+   "near": 0.585,
+   "far": 0.365
+  }
+ },
+ "7": {
+  "broken": {
+   "whole": 0.575,
+   "near": 1.0,
+   "far": 0.0
+  }
+ },
+ "8": {
+  "broken": {
+   "whole": 0.575,
+   "near": 1.0,
+   "far": 0.02
+  }
+ },
+ "9": {
+  "broken": {
+   "whole": 0.645,
+   "near": 1.0,
+   "far": 0.02
+  }
+ },
+ "10": {
+  "broken": {
+   "whole": 1.0,
+   "near": 1.0,
+   "far": 1.0
+  }
+ },
+ "11": {
+  "broken": {
+   "whole": 1.0,
+   "near": 1.0,
+   "far": 1.0
+  }
+ },
+ "12": {
+  "broken": {
+   "whole": 1.0,
+   "near": 1.0,
+   "far": 1.0
+  }
+ }
+}

@@ -54,7 +54,7 @@ PROFILES = {
     "clean": Profile(),
     "hesitant": Profile(name="hesitant", hesitate_p=0.5),
     "laggy": Profile(name="laggy", lag=3, gain=0.5),      # decision 3: does not hurt the policy; not used
-    "desync": Profile(name="desync", desync=2),
+    "desync": Profile(name="desync", desync=3),
     "comfort": Profile(name="comfort", comfort="near"),
     "early_grip": Profile(name="early_grip", early_grip_p=0.4),
 }

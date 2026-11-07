@@ -1,0 +1,4 @@
+{
+ "t58d959ab": "The diagnosis identifies that the action labels lag the observations by exactly 2 steps while the demos themselves executed correctly, and it explains that the policy therefore learned delayed commands, causing overshoot and mistiming, which matches the true cause.",
+ "t897f9566": "The diagnosis correctly identifies that all demonstrations start with the block on the near half of the table, so the policy never learned far-side reaches, which is the same mechanism as the true cause."
+}

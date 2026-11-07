@@ -1,0 +1,18 @@
+{
+ "t58d959ab": {
+  "unit": 51,
+  "jobs": 1,
+  "rollouts": 18,
+  "frac_changed_vs_given": 0.9999,
+  "job_init": "scratch",
+  "kind": "data_fix"
+ },
+ "t897f9566": {
+  "unit": 52,
+  "jobs": 2,
+  "rollouts": 20,
+  "frac_changed_vs_given": 0.9999,
+  "job_init": "submitted",
+  "kind": "synthetic"
+ }
+}
