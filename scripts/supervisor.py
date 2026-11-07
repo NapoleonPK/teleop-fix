@@ -9,6 +9,7 @@ classify.py and evaluate_all.py heldout on all test units, write runs/ALL_DONE a
 Log runs/supervisor.log; state runs/supervisor_state.json."""
 import datetime as dt
 import json
+import os
 import random
 import re
 import shutil
@@ -20,7 +21,9 @@ ROOT = Path(__file__).resolve().parent.parent
 V, RUNS = ROOT / "vault", ROOT / "runs"
 SUBJECT = Path.home() / "tf-subject" / "sessions"
 PY = str(ROOT / ".venv" / "bin" / "python")
-ENV = {"PYTHONPATH": str(ROOT), "PATH": "/Users/teo/.local/bin:/usr/bin:/bin:/usr/sbin:/sbin", "HOME": str(Path.home())}
+# Full launchd environment: claude needs USER to find its keychain login (deviation 1, 2026-11-07).
+ENV = {**os.environ, "PYTHONPATH": str(ROOT), "PATH": "/Users/teo/.local/bin:/usr/bin:/bin:/usr/sbin:/sbin",
+       "HOME": str(Path.home()), "USER": os.environ.get("USER") or Path.home().name}
 
 
 def log(m):
@@ -74,19 +77,36 @@ def reset_time(txt):
     return r + dt.timedelta(days=1) if r < now - dt.timedelta(minutes=1) else r
 
 
+def last_result(sid):
+    """Final 'result' line of the transcript (where usage-limit and login errors show), or ''."""
+    t = V / "sessions" / sid / "transcript.jsonl"
+    if not t.exists():
+        return ""
+    with open(t, "rb") as f:
+        f.seek(max(0, t.stat().st_size - 20000)); tail = f.read().decode(errors="ignore")
+    lines = [l for l in tail.splitlines() if '"type":"result"' in l]
+    return lines[-1] if lines else ""
+
+
 def sweep(st):
-    """Handle unfinished folders. Returns a datetime to wait for if a usage limit was seen."""
+    """Handle unfinished or faulted folders. Returns a datetime to wait for if a usage limit or login fault was seen.
+    Faults are read from the transcript's final result line before the audit check, because run_one.sh audits every
+    session, including ones cut by the usage limit (deviation 1, 2026-11-07)."""
     wait = None
+    later = lambda w, r: max(w, r) if w else r
     for s in tests():
         sid = s["id"]; d = V / "sessions" / sid
-        if (d / "audit.json").exists() or st["crashes"].get(sid, 0) >= 2 or not (d.exists() or (SUBJECT / sid).exists()):
+        if not (d.exists() or (SUBJECT / sid).exists()):
             continue
-        t = d / "transcript.jsonl"
-        txt = t.read_text(errors="ignore") if t.exists() else ""
-        if "hit your" in txt:
-            r = reset_time(txt) or dt.datetime.now() + dt.timedelta(minutes=25)
-            wait = max(wait, r) if wait else r
+        res = last_result(sid)
+        if "authentication_failed" in res or "Not logged in" in res:      # harness fault, the agent saw nothing
+            wait = later(wait, dt.datetime.now() + dt.timedelta(minutes=25))
+            log(f"login fault: {sid} -> failed_auth/{move(sid, V / 'failed_auth')}; retry later")
+        elif "hit your" in res:
+            wait = later(wait, reset_time(res) or dt.datetime.now() + dt.timedelta(minutes=25))
             log(f"usage limit: {sid} -> failed_usage_limit/{move(sid, V / 'failed_usage_limit')}")
+        elif (d / "audit.json").exists() or st["crashes"].get(sid, 0) >= 2:
+            continue
         elif (d / "manifest.json").exists():
             subprocess.run([PY, "scripts/audit.py", sid], cwd=ROOT, env=ENV, capture_output=True)
             log(f"audited {sid}")

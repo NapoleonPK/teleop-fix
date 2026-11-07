@@ -14,7 +14,7 @@ TRUTH = {
                 "holding the gripper still (with slight hand tremor) at the hover pose above the block before "
                 "descending. The policy learned to hover above the block and often never descends to grasp it.",
     "desync": "The recording pipeline was misaligned: every stored observation is paired with the operator's command "
-              "from 2 steps earlier (the actions lag the observations by 2 steps). The demonstrations themselves were "
+              "from 3 steps earlier (the actions lag the observations by 3 steps). The demonstrations themselves were "
               "executed correctly, but the policy learned delayed commands, so it acts too late (overshoots, mistimes "
               "the descent and the grasp).",
     "comfort": "The operator never demonstrated with the block on the far side of the table (block start x offset "

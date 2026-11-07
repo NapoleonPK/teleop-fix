@@ -131,4 +131,14 @@ The analysis runs once on the frozen result files; every reported number comes f
 
 ## Deviations
 
-(none yet)
+1. **2026-11-07 15:20, harness (scripts/supervisor.py).** Under launchd the supervisor passed its children an
+   environment without USER, so `claude` could not find its login: the first two test sessions (t069263b0, tdeb08751)
+   ended after one turn with "Not logged in", 0 rollouts, 0 jobs, no task file read. Fix: children inherit the full
+   launchd environment. The supervisor also now reads usage-limit and login faults from the transcript's final result
+   line before treating a session as done (run_one.sh audits every session, so the frozen check never fired). Both
+   sessions moved to vault/failed_auth/ and rerun, as a harness fault (the agent saw nothing). No change to
+   hypotheses, units, arms, metrics or thresholds.
+2. **2026-11-07 15:20, scorer truth text (scripts/diagnosis.py).** TRUTH["desync"] said the lag was 2 steps (written
+   before decision 10); the test units and the World section above use 3. Changed to 3 so the blind scorer is given
+   the true cause. Done before any test diagnosis was scored; the rubric and thresholds are unchanged. The dev unit
+   u51 (k = 2) was scored earlier with the 2-step text.

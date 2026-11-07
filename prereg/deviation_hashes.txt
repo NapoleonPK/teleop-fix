@@ -1,0 +1,2 @@
+c1b8b31db400d32afa18d4db2d19579243a0e1efdda3dd4e935e1bfaaee30ef6  scripts/supervisor.py
+3ee7a0e2cebe1903cc11334109406767156ad12e22d6e2f1a3b85d642a3f1344  scripts/diagnosis.py
