@@ -35,3 +35,19 @@ u4-12 continuing; finish() waits for them.
 - [ ] hand-audit flagged sessions -> vault/audit_verdicts.json (flat {id: "clean" | "violation: ..."})
 - [ ] after runs/ALL_DONE: `.venv/bin/python scripts/analysis.py vault/eval_heldout.json results/` once; write-up; email Téo
 Stop: `launchctl bootout gui/501/com.teleopfix.supervisor`.
+
+**2026-11-08 00:01. STOPPED at Téo's request** ("stop using any claude code token on this mac until i give u my
+approval"). Supervisor booted out before its 00:05 relaunch; plist moved to scripts/com.teleopfix.supervisor.plist.paused.
+Heartbeat cron cancelled. 9 of 12 test sessions done (no audit flags); left: u12 (t46339627, cut by the usage limit,
+in vault/failed_usage_limit/) and 2 more. Baselines complete for all units. Resume (only with Téo's approval):
+`cp scripts/com.teleopfix.supervisor.plist.paused ~/Library/LaunchAgents/com.teleopfix.supervisor.plist &&
+launchctl bootstrap gui/501 ~/Library/LaunchAgents/com.teleopfix.supervisor.plist`.
+
+**2026-11-08 11:34. RESUMED with Téo's approval**; supervisor relaunched (u12 rerun, then u8, u9). Interim, exploratory
+dev-seed (not held-out) eval of finished agent submissions: runs/interim_eval.py -> runs/eval_dev_interim.json
+(9/9 agents at 99.5-100%; baseline arms for u4-12 still evaluating). Not a prereg result.
+
+**2026-11-08 16:35. TEST PHASE COMPLETE.** ALL_DONE 12:35 (12/12 sessions, 0 audit flags, diagnosis + held-out eval
+done). scripts/analysis.py run once -> results/teleopfix.{md,json}: H1, H2, H3 (9/9), H4 (+0.0) all passed.
+Next: write-up for Téo (nothing public without review). Possible follow-up: HF pretrained policy + weights-only tuning
+(proposed 2026-11-08, waiting for Téo).
