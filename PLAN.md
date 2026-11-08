@@ -51,3 +51,7 @@ dev-seed (not held-out) eval of finished agent submissions: runs/interim_eval.py
 done). scripts/analysis.py run once -> results/teleopfix.{md,json}: H1, H2, H3 (9/9), H4 (+0.0) all passed.
 Next: write-up for Téo (nothing public without review). Possible follow-up: HF pretrained policy + weights-only tuning
 (proposed 2026-11-08, waiting for Téo).
+
+**2026-11-08 16:45. PUBLISHED at Téo's request:** GitHub https://github.com/NapoleonPK/teleop-fix (public, tag prereg
+pushed) and HF dataset https://huggingface.co/datasets/PAOP123/teleop-fix (units, 14 sessions with transcripts,
+results, superseded runs).
